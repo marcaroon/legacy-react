@@ -33,7 +33,7 @@ export default function Timeline() {
       phase: "Phase 3",
       title: "Improvement & Development",
       duration: "3 Bulan, 2 Minggu Sekali",
-      date: "April - Juni 2025",
+      date: "April - Juni 2026",
       description:
         "Waktunya peserta untuk melakukan pengembangan dan perbaikan dengan mengimplementasikan ilmu yang didapat sebelumnya. Peserta akan melaksanakan Project Improvement & Development di bidang HR, Marketing, Finance atau Operasional (memilih salah 1 bidang) di Family Business masing-masing. Peserta akan memperoleh dukungan komunitas dan mentor berpengalaman yang akan mendampingi mereka dalam bentuk konsultasi setiap 2 minggu sekali. Proses Improvement & Development akan berlangsung selama 3 bulan dan di akhir Project peserta wajib mengumpulkan laporan Project untuk evaluasi hasil Improvement & Development di perusahaan masing-masing.",
       color: "#F7941D",
@@ -43,7 +43,7 @@ export default function Timeline() {
       phase: "Final",
       title: "Welcome to Our Family!",
       duration: "Selamanya",
-      date: "Start from Juli 2025",
+      date: "Start from Juli 2026",
       description:
         "Peserta akan bergabung dalam komunitas LEGACY yang akan memberikan mereka akses penuh ke jaringan bisnis keluarga Indonesia untuk membangun networking sejak dini, melatih mereka untuk saling berkolaborasi dan saling berbagi ilmu. Komunitas ini akan diisi dengan berbagai kegiatan yang mensupport peserta untuk dapat tumbuh bersama menjadi generasi penerus yang tangguh, beretos kerja, bertanggung jawab, dan visioner.",
       color: "#C59CDE",

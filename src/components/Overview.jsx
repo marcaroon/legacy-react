@@ -242,7 +242,7 @@ export default function Overview() {
                   Tanggal
                 </h4>
                 <p className="text-lg font-medium" style={{ color: "#ED6335" }}>
-                  9-11 Januari 2025
+                  9-11 Januari 2026
                 </p>
               </div>
 
@@ -295,11 +295,14 @@ export default function Overview() {
                 onMouseEnter={() => setHoveredCriteria(index)}
                 onMouseLeave={() => setHoveredCriteria(null)}
               >
-                <div className="flex items-start gap-6">
+                <div className="flex items-start md:gap-6">
+                  {/* Bullet */}
                   <div
-                    className="w-6 h-6 rounded-full mt-1 flex-shrink-0"
+                    className="hidden md:flex w-6 h-6 rounded-full mt-1 flex-shrink-0"
                     style={{ backgroundColor: item.color }}
                   ></div>
+
+                  {/* Content */}
                   <div className="flex-1">
                     <h4
                       className="font-semibold mb-4 leading-relaxed"

@@ -191,7 +191,7 @@ export default function Navbar() {
             <div className="lg:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`relative p-3 rounded-2xl transition-all duration-300 group z-60 border ${
+                className={`relative p-3 rounded-2xl transition-all duration-300 group z-    border ${
                   mobileMenuOpen ? "shadow-lg" : "hover:shadow-md"
                 }`}
                 style={{
@@ -291,11 +291,11 @@ export default function Navbar() {
                 style={{ borderBottom: "1px solid #E1CAF6" }}
               >
                 <div className="flex items-center space-x-3">
-                  <img
+                  {/* <img
                     src="legacy-logo.png"
                     alt="Legacy Logo"
                     className="h-9 w-auto"
-                  />
+                  /> */}
                   <span
                     className="font-semibold text-lg"
                     style={{ color: "#662C8F" }}

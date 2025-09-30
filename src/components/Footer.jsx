@@ -82,7 +82,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-2">
               <p style={{ color: "#662C8F" }}>
-                <strong>Tanggal:</strong> 9-11 Januari 2025
+                <strong>Tanggal:</strong> 9-11 Januari 2026
               </p>
               <p style={{ color: "#662C8F" }}>
                 <strong>Target:</strong> 17-29 tahun

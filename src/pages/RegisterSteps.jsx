@@ -260,10 +260,8 @@ export default function RegisterSteps() {
       console.log("Registration response:", result);
 
       if (result.success && result.data.midtrans_token) {
-        // Simpan registration ID
         localStorage.setItem("registration_id", result.data.registration_id);
 
-        // panggil midtrans snap pop up
         if (window.snap) {
           window.snap.pay(result.data.midtrans_token, {
             onSuccess: function (result) {

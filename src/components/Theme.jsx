@@ -4,6 +4,7 @@ export default function Theme() {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredChallenge, setHoveredChallenge] = useState(null);
+  const [touchStartX, setTouchStartX] = useState(null);
 
   const fundamentalQuestions = [
     "Bagaimana caranya agar bisnis keluarga tidak sekadar bertahan?",
@@ -157,6 +158,29 @@ export default function Theme() {
                 backgroundColor: "rgba(237, 99, 53, 0.05)",
                 borderColor: "#ED6335",
               }}
+              onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
+              onTouchEnd={(e) => {
+                if (touchStartX === null) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                  if (diff > 0) {
+                    // geser kiri → next
+                    setActiveQuestion(
+                      (prev) => (prev + 1) % fundamentalQuestions.length
+                    );
+                  } else {
+                    // geser kanan → prev
+                    setActiveQuestion(
+                      (prev) =>
+                        (prev - 1 + fundamentalQuestions.length) %
+                        fundamentalQuestions.length
+                    );
+                  }
+                }
+                setTouchStartX(null);
+              }}
             >
               <p
                 className="text-xl md:text-2xl font-light italic transition-all duration-1000 px-8 text-center"
@@ -218,9 +242,9 @@ export default function Theme() {
                 onMouseEnter={() => setHoveredChallenge(index)}
                 onMouseLeave={() => setHoveredChallenge(null)}
               >
-                <div className="flex items-start gap-8">
+                <div className="flex items-start md:gap-8">
                   {/* Visual Element */}
-                  <div className="flex-shrink-0">
+                  <div className="hidden md:flex flex-shrink-0">
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold transition-all duration-300"
                       style={{ background: challenge.gradient }}

@@ -13,6 +13,7 @@ export default defineConfig({
       "fromlegacy.tqpartner.com",
       "admin.fromlegacy.tqpartner.com",
       "a5e00b954176.ngrok-free.app",
+      "4e7d97a149e8.ngrok-free.app",
     ],
   },
 });

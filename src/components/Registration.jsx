@@ -294,23 +294,24 @@ export default function Registration() {
                   )}
                   <div className="flex items-center gap-4">
                     <div className="flex flex-col">
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <span
-                          className="text-4xl font-light"
+                          className="text-2xl sm:text-4xl font-light"
                           style={{ color: pkg.borderColor }}
                         >
                           {formatPrice(pkg.currentPrice)}
                         </span>
                         {pkg.isEarlyBirdActive && (
                           <div
-                            className="text-xs px-3 py-1 rounded-full text-white font-semibold
-               bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500
-               bg-[length:200%_200%] animate-[gradient-move_3s_linear_infinite]"
+                            className="text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-white font-semibold
+         bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500
+         bg-[length:200%_200%] animate-[gradient-move_3s_linear_infinite]"
                           >
                             Early Bird
                           </div>
                         )}
                       </div>
+
                       {pkg.isEarlyBirdActive && (
                         <span className="text-lg text-gray-500 line-through mt-1">
                           {formatPrice(pkg.price)}
