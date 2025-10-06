@@ -12,8 +12,7 @@ export default defineConfig({
     allowedHosts: [
       "fromlegacy.tqpartner.com",
       "admin.fromlegacy.tqpartner.com",
-      "a5e00b954176.ngrok-free.app",
-      "4e7d97a149e8.ngrok-free.app",
+      "8d4b5f3b7e85.ngrok-free.app",
     ],
   },
 });

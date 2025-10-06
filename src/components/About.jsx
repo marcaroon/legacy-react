@@ -124,12 +124,12 @@ export default function About({ onNavigateToDetail }) {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Hook Section */}
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-20 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <h2
-            className="text-4xl md:text-6xl font-light mb-8 leading-tight"
+            className="text-4xl md:text-6xl font-light mb-6 leading-tight"
             style={{ color: "#662C8F" }}
           >
             Komunitas untuk
@@ -144,116 +144,140 @@ export default function About({ onNavigateToDetail }) {
           </h2>
 
           <p
-            className="text-xl font-normal max-w-4xl mx-auto leading-relaxed"
+            className="text-xl font-normal max-w-3xl mx-auto leading-relaxed"
             style={{ color: "#662C8F" }}
           >
-            LEGACY adalah komunitas yang mewadahi kolaborasi, jejaring, dan
-            pertukaran gagasan bagi generasi penerus bisnis keluarga di seluruh
-            Indonesia.
+            LEGACY hadir untuk membekali generasi baru bisnis keluarga dengan
+            jejaring, kolaborasi, dan pertukaran gagasan yang relevan dengan
+            zaman. Sebuah komunitas yang membantu Anda menjaga warisan,
+            sekaligus menumbuhkan inovasi.
           </p>
         </div>
 
-        {/* Interactive Story Section */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Story Slider */}
-          <div>
-            <div
-              className="backdrop-blur-lg rounded-3xl p-10 border transition-all duration-500 min-h-[400px] flex flex-col justify-between"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-                borderColor: "#E1CAF6",
-              }}
-            >
-              {/* Story Content */}
-              <div className="text-center mb-8">
-                <div className="text-6xl mb-4 transition-transform duration-500 hover:scale-110">
-                  {storySlides[currentStory].visual}
+        {/* Interactive Story Section - More Seamless Layout */}
+        <div className="mb-24">
+          <div className="grid lg:grid-cols-5 gap-8 items-stretch">
+            {/* Story Slider - Takes 3 columns */}
+            <div className="lg:col-span-3">
+              <div
+                className="relative overflow-hidden rounded-3xl transition-all duration-700 h-full flex flex-col justify-between p-10 lg:p-12"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(225,202,246,0.2))",
+                  backdropFilter: "blur(10px)",
+                  boxShadow: "0 8px 32px rgba(102, 44, 143, 0.08)",
+                }}
+              >
+                {/* Story Content */}
+                <div className="text-center flex-grow flex flex-col justify-center">
+                  <div className="text-7xl mb-6 transition-all duration-500 hover:scale-110 inline-block">
+                    {storySlides[currentStory].visual}
+                  </div>
+                  <h3
+                    className="text-3xl font-semibold mb-6"
+                    style={{ color: "#662C8F" }}
+                  >
+                    {storySlides[currentStory].title}
+                  </h3>
+                  <p
+                    className="text-lg leading-relaxed max-w-2xl mx-auto"
+                    style={{ color: "#662C8F", opacity: 0.85 }}
+                  >
+                    {storySlides[currentStory].content}
+                  </p>
                 </div>
-                <h3
-                  className="text-2xl font-semibold mb-6"
-                  style={{ color: "#662C8F" }}
-                >
-                  {storySlides[currentStory].title}
-                </h3>
-                <p
-                  className="text-lg leading-relaxed"
-                  style={{ color: "#662C8F" }}
-                >
-                  {storySlides[currentStory].content}
-                </p>
-              </div>
 
-              {/* Story Navigation */}
-              <div className="flex justify-center space-x-3">
-                {storySlides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentStory(index)}
-                    className={`transition-all duration-500 rounded-full ${
-                      index === currentStory
-                        ? "w-8 h-3"
-                        : "w-3 h-3 hover:scale-125"
-                    }`}
-                    style={{
-                      backgroundColor:
-                        index === currentStory ? "#ED6335" : "#C59CDE",
-                    }}
-                  />
-                ))}
+                {/* Story Navigation */}
+                <div className="flex justify-center space-x-3 mt-8">
+                  {storySlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentStory(index)}
+                      className={`transition-all duration-500 rounded-full ${
+                        index === currentStory
+                          ? "w-10 h-3"
+                          : "w-3 h-3 hover:scale-125 opacity-50"
+                      }`}
+                      style={{
+                        backgroundColor:
+                          index === currentStory ? "#ED6335" : "#C59CDE",
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Mission Statement */}
-          <div>
-            <div
-              className="backdrop-blur-lg rounded-3xl p-10 border min-h-[400px] flex flex-col justify-center items-center text-center"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-                borderColor: "#E1CAF6",
-              }}
-            >
-              <h3
-                className="text-2xl font-semibold mb-6"
-                style={{ color: "#662C8F" }}
-              >
-                Visi Komunitas
-              </h3>
-              <p
-                className="text-lg leading-relaxed mb-8"
-                style={{ color: "#662C8F" }}
-              >
-                Menjadi ekosistem berkelanjutan yang menumbuhkan kebersamaan,
-                memperkuat jaringan strategis, dan mempersiapkan generasi baru
-                untuk mengemban tanggung jawab yang lebih besar.
-              </p>
-
-              {/* Learn More Button */}
-              <button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                  if (onNavigateToDetail) {
-                    onNavigateToDetail();
-                  } else {
-                    window.location.href = "/about-detail";
-                  }
+            {/* Mission Statement - Takes 2 columns */}
+            <div className="lg:col-span-2">
+              <div
+                className="relative overflow-hidden rounded-3xl h-full flex flex-col justify-center p-10 lg:p-12"
+                style={{
+                  background: "linear-gradient(135deg, rgba(237,99,53,0.08), rgba(255,255,255,0.95))",
+                  backdropFilter: "blur(10px)",
+                  boxShadow: "0 8px 32px rgba(237, 99, 53, 0.08)",
                 }}
-                className="group flex items-center gap-2 text-lg font-medium transition-all duration-300 hover:gap-4 border-b-2 pb-1 border-transparent hover:border-current"
-                style={{ color: "#ED6335" }}
               >
-                Selengkapnya
-                <ArrowRight
-                  size={20}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </button>
+                {/* Accent decoration */}
+                <div
+                  className="w-16 h-1 rounded-full mb-8"
+                  style={{
+                    background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                  }}
+                ></div>
+
+                <h3
+                  className="text-2xl lg:text-3xl font-semibold mb-6"
+                  style={{ color: "#662C8F" }}
+                >
+                  Visi Komunitas
+                </h3>
+                
+                <p
+                  className="text-base lg:text-lg leading-relaxed mb-10"
+                  style={{ color: "#662C8F", opacity: 0.85 }}
+                >
+                  Menjadi ekosistem berkelanjutan yang menumbuhkan kebersamaan,
+                  memperkuat jaringan strategis, dan mempersiapkan generasi baru
+                  untuk mengemban tanggung jawab yang lebih besar.
+                </p>
+
+                {/* Learn More Button */}
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    if (onNavigateToDetail) {
+                      onNavigateToDetail();
+                    } else {
+                      window.location.href = "/about-detail";
+                    }
+                  }}
+                  className="group inline-flex items-center gap-2 text-lg font-semibold transition-all duration-300 self-start"
+                  style={{ color: "#ED6335" }}
+                >
+                  Selengkapnya
+                  <ArrowRight
+                    size={20}
+                    className="transition-transform duration-300 group-hover:translate-x-2"
+                  />
+                  <div
+                    className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
+                    style={{ backgroundColor: "#ED6335" }}
+                  ></div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Instagram Embed Section */}
-        <div className="mb-20 flex justify-center">
-          <div ref={instagramRef} className="w-full max-w-lg mx-auto">
+        {/* Instagram Embed Section - More Integrated */}
+        <div className="flex justify-center">
+          <div 
+            ref={instagramRef} 
+            className="w-full max-w-lg mx-auto rounded-3xl overflow-hidden"
+            style={{
+              boxShadow: "0 8px 32px rgba(102, 44, 143, 0.1)",
+            }}
+          >
             <blockquote
               className="instagram-media"
               data-instgrm-permalink="https://www.instagram.com/reel/DOxtPZAkShQ/?utm_source=ig_embed&utm_campaign=loading"
@@ -261,14 +285,13 @@ export default function About({ onNavigateToDetail }) {
               style={{
                 background: "#FFF",
                 border: 0,
-                borderRadius: "3px",
-                boxShadow:
-                  "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
-                margin: "1px",
+                borderRadius: "24px",
+                boxShadow: "none",
+                margin: 0,
                 maxWidth: "540px",
                 minWidth: "326px",
                 padding: 0,
-                width: "99.375%",
+                width: "100%",
               }}
             >
               <div style={{ padding: "16px" }}>
@@ -371,47 +394,14 @@ export default function About({ onNavigateToDetail }) {
                         fontFamily: "Arial,sans-serif",
                         fontSize: "14px",
                         fontStyle: "normal",
-                        fontWeight: "550",
+                        fontWeight: 550,
                         lineHeight: "18px",
                       }}
                     >
                       View this post on Instagram
                     </div>
                   </div>
-                  <div style={{ padding: "12.5% 0" }}></div>
                 </a>
-                <p
-                  style={{
-                    color: "#c9c8cd",
-                    fontFamily: "Arial,sans-serif",
-                    fontSize: "14px",
-                    lineHeight: "17px",
-                    marginBottom: 0,
-                    marginTop: "8px",
-                    overflow: "hidden",
-                    padding: "8px 0 7px",
-                    textAlign: "center",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <a
-                    href="https://www.instagram.com/reel/DOxtPZAkShQ/?utm_source=ig_embed&utm_campaign=loading"
-                    style={{
-                      color: "#c9c8cd",
-                      fontFamily: "Arial,sans-serif",
-                      fontSize: "24px",
-                      fontStyle: "normal",
-                      fontWeight: "normal",
-                      lineHeight: "17px",
-                      textDecoration: "none",
-                    }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    A post shared by LEGACY Community (@fromlegacy)
-                  </a>
-                </p>
               </div>
             </blockquote>
           </div>
@@ -420,8 +410,7 @@ export default function About({ onNavigateToDetail }) {
 
       <style jsx>{`
         @keyframes float {
-          0%,
-          100% {
+          0%, 100% {
             transform: translateY(0px);
           }
           50% {
@@ -429,7 +418,7 @@ export default function About({ onNavigateToDetail }) {
           }
         }
         .animate-float {
-          animation: float 3s ease-in-out infinite;
+          animation: float 6s ease-in-out infinite;
         }
       `}</style>
     </section>

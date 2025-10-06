@@ -15,6 +15,7 @@ import AboutDetail from "./pages/AboutDetail";
 import PaymentPending from "./pages/Payment/PaymentPending";
 import PaymentError from "./pages/Payment/PaymentError";
 import PaymentStatus from "./pages/Payment/PaymentStatus";
+import WhatsAppButton from "./components/WhatsappButton";
 import Speakers from "./components/Speakers";
 
 export default function App() {
@@ -29,13 +30,14 @@ export default function App() {
               <Navbar />
               <Hero />
               <About />
+              <Theme />
               <Benefit />
               <Overview />
-              <Theme />
               <Timeline />
               <Registration />
               {/* <Speakers /> */}
               <Footer />
+              <WhatsAppButton />
             </div>
           }
         />

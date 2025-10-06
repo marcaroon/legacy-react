@@ -10,24 +10,18 @@ export default function AboutDetail({ onBack }) {
       title: "Stewardship",
       description:
         "Tanggung jawab generasi penerus untuk menjaga, merawat, dan mengembangkan warisan keluarga dengan bijak",
-      longDescription:
-        "Stewardship adalah tentang menjadi penjaga yang bertanggung jawab atas warisan yang telah dipercayakan kepada kita. Ini bukan hanya tentang mempertahankan apa yang sudah ada, tetapi juga mengembangkannya dengan wisdom dan kehati-hatian untuk generasi mendatang.",
       image: "core-values.svg",
     },
     {
       title: "Continuity",
       description:
         "Menjamin kesinambungan nilai, identitas, dan visi lintas generasi agar tetap relevan dan berkelanjutan",
-      longDescription:
-        "Continuity memastikan bahwa identitas dan nilai-nilai fundamental tetap terjaga sambil beradaptasi dengan perubahan zaman. Seperti sungai yang terus mengalir, bisnis keluarga harus mempertahankan esensinya sambil menyesuaikan jalurnya.",
       image: "core-values.svg",
     },
     {
       title: "Transformative",
       description:
         "Kemampuan untuk membawa warisan ke arah baru melalui inovasi, adaptasi, dan perubahan yang bermakna",
-      longDescription:
-        "Transformative adalah keberanian untuk membawa perubahan positif yang bermakna. Ini tentang menghormati masa lalu sambil menciptakan masa depan yang lebih baik, dengan inovasi yang sejalan dengan nilai-nilai keluarga.",
       image: "core-values.svg",
     },
   ];
@@ -289,12 +283,6 @@ export default function AboutDetail({ onBack }) {
                         style={{ color: "#662C8F" }}
                       >
                         {value.description}
-                      </p>
-                      <p
-                        className="text-sm leading-relaxed opacity-80"
-                        style={{ color: "#662C8F" }}
-                      >
-                        {value.longDescription}
                       </p>
                     </div>
 

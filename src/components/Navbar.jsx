@@ -19,7 +19,7 @@ export default function Navbar() {
         "theme",
         "timeline",
         "registration",
-        "speakers",
+        // "speakers",
       ];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
@@ -53,9 +53,9 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Tentang", href: "#about", id: "about" },
+    { name: "Tema", href: "#theme", id: "theme" },
     { name: "Manfaat", href: "#benefit", id: "benefit" },
     { name: "Overview", href: "#overview", id: "overview" },
-    { name: "Tema", href: "#theme", id: "theme" },
     { name: "Timeline", href: "#timeline", id: "timeline" },
     { name: "Program", href: "#registration", id: "registration" },
     // { name: "Speakers", href: "#speakers", id: "speakers" },

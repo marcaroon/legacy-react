@@ -93,71 +93,102 @@ export default function Theme() {
             className="text-4xl md:text-6xl font-light mb-8 leading-tight"
             style={{ color: "#662C8F" }}
           >
-            Tema
+            Program
             <span
               className="block text-transparent bg-clip-text bg-gradient-to-r font-semibold mt-2"
               style={{
                 backgroundImage: "linear-gradient(135deg, #ED6335, #F7941D)",
               }}
             >
-              Program
+              Tagline
             </span>
           </h2>
         </div>
 
-        {/* Main Theme Section */}
-        <div className="text-center mb-20">
-          <div
-            className="backdrop-blur-lg rounded-3xl p-12 border max-w-5xl mx-auto"
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.8)",
-              borderColor: "#E1CAF6",
-            }}
-          >
-            <p
-              className="text-2xl md:text-3xl font-light mb-8 leading-relaxed"
+        {/* Main Theme Section - Redesigned */}
+        <div className="text-center mb-24 relative">
+          <div className="max-w-6xl mx-auto">
+            {/* <p
+              className="text-lg md:text-xl font-light mb-8 opacity-80"
               style={{ color: "#662C8F" }}
             >
               Tema utama program ini adalah
-            </p>
+            </p> */}
 
-            <div
-              className="inline-block rounded-3xl px-12 py-8 text-white text-2xl md:text-3xl font-medium shadow-2xl transform hover:scale-105 transition-all duration-500 mb-8"
-              style={{
-                background: "linear-gradient(135deg, #662C8F, #ED6335)",
-              }}
-            >
-              "Belajar dengan Praktik Langsung"
+            {/* Large Centered Quote */}
+            <div className="relative mb-12">
+              <div
+                className="absolute -top-8 -left-4 md:-left-12 text-8xl md:text-9xl opacity-10 font-serif"
+                style={{ color: "#ED6335" }}
+              >
+                "
+              </div>
+              <h3
+                className="text-3xl md:text-5xl lg:text-6xl font-medium leading-tight px-8 md:px-16 py-8 relative"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #662C8F 0%, #ED6335 50%, #F7941D 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                From roots to greatness, seed the future
+              </h3>
+              <div
+                className="absolute -bottom-4 -right-4 md:-right-12 text-8xl md:text-9xl opacity-10 font-serif"
+                style={{ color: "#F7941D" }}
+              >
+                "
+              </div>
+            </div>
+
+            {/* Decorative line */}
+            <div className="flex items-center justify-center gap-4 mb-12">
+              <div
+                className="h-px w-20 md:w-40"
+                style={{
+                  background:
+                    "linear-gradient(to right, transparent, #ED6335, transparent)",
+                }}
+              ></div>
+              <div
+                className="w-2 h-2 rounded-full"
+                style={{ backgroundColor: "#ED6335" }}
+              ></div>
+              <div
+                className="h-px w-20 md:w-40"
+                style={{
+                  background:
+                    "linear-gradient(to right, transparent, #ED6335, transparent)",
+                }}
+              ></div>
             </div>
 
             <p
-              className="text-lg font-light max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl font-light max-w-4xl mx-auto leading-relaxed"
               style={{ color: "#662C8F" }}
             >
-              Peserta akan fokus pada skill praktis yang relevan dengan
-              kebutuhan industri saat ini, membangun jembatan antara teori dan
-              implementasi nyata dalam bisnis keluarga.
+              Rooted in legacy, growing with innovation — peserta membangun
+              jembatan dari nilai keluarga menuju masa depan bisnis yang
+              relevan.
             </p>
           </div>
         </div>
 
-        {/* Interactive Questions Section */}
-        <div className="mb-20">
+        {/* Interactive Questions Section - Redesigned */}
+        <div className="mb-24">
           <div className="text-center mb-12">
-            <h3
-              className="text-3xl font-normal mb-8"
+            {/* <h3
+              className="text-3xl md:text-4xl font-light mb-12"
               style={{ color: "#662C8F" }}
             >
               Pertanyaan Fundamental
-            </h3>
+            </h3> */}
 
-            {/* Question Display */}
+            {/* Question Display - Minimal Design */}
             <div
-              className="backdrop-blur-lg rounded-3xl p-10 border min-h-32 flex items-center justify-center"
-              style={{
-                backgroundColor: "rgba(237, 99, 53, 0.05)",
-                borderColor: "#ED6335",
-              }}
+              className="relative py-16 px-8"
               onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
               onTouchEnd={(e) => {
                 if (touchStartX === null) return;
@@ -166,12 +197,10 @@ export default function Theme() {
 
                 if (Math.abs(diff) > 50) {
                   if (diff > 0) {
-                    // geser kiri → next
                     setActiveQuestion(
                       (prev) => (prev + 1) % fundamentalQuestions.length
                     );
                   } else {
-                    // geser kanan → prev
                     setActiveQuestion(
                       (prev) =>
                         (prev - 1 + fundamentalQuestions.length) %
@@ -182,16 +211,32 @@ export default function Theme() {
                 setTouchStartX(null);
               }}
             >
+              {/* Left Quote */}
+              <div
+                className="absolute top-8 left-4 md:left-12 text-6xl opacity-20 font-serif"
+                style={{ color: "#ED6335" }}
+              >
+                "
+              </div>
+
               <p
-                className="text-xl md:text-2xl font-light italic transition-all duration-1000 px-8 text-center"
+                className="text-xl md:text-3xl font-regular italic transition-all duration-1000 max-w-4xl mx-auto"
                 style={{ color: "#662C8F" }}
               >
-                "{fundamentalQuestions[activeQuestion]}"
+                {fundamentalQuestions[activeQuestion]}
               </p>
+
+              {/* Right Quote */}
+              <div
+                className="absolute bottom-8 right-4 md:right-12 text-6xl opacity-20 font-serif"
+                style={{ color: "#F7941D" }}
+              >
+                "
+              </div>
             </div>
 
             {/* Question Indicators */}
-            <div className="flex justify-center space-x-3 mt-8">
+            <div className="flex justify-center space-x-3">
               {fundamentalQuestions.map((_, index) => (
                 <button
                   key={index}
@@ -211,106 +256,116 @@ export default function Theme() {
           </div>
         </div>
 
-        {/* Challenge Context Section */}
-        <div
-          className="backdrop-blur-lg rounded-3xl p-12 border"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
-            borderColor: "#C59CDE",
-          }}
-        >
+        {/* Challenge Context Section - Redesigned */}
+        <div className="mb-20">
           <h3
-            className="text-3xl font-light mb-12 text-center"
+            className="text-3xl md:text-4xl font-bold mb-16 text-center"
             style={{ color: "#662C8F" }}
           >
             Tantangan Generasi Penerus
           </h3>
 
-          <div className="space-y-8">
+          <div className="space-y-16 max-w-5xl mx-auto">
             {challenges.map((challenge, index) => (
               <div
                 key={index}
-                className="group backdrop-blur-sm rounded-2xl p-8 border-2 transition-all duration-500 cursor-pointer hover:scale-105"
-                style={{
-                  backgroundColor:
-                    hoveredChallenge === index
-                      ? "rgba(255, 255, 255, 0.9)"
-                      : "rgba(255, 255, 255, 0.7)",
-                  borderColor:
-                    hoveredChallenge === index ? "#ED6335" : "#E1CAF6",
-                }}
+                className="relative transition-all duration-500"
                 onMouseEnter={() => setHoveredChallenge(index)}
                 onMouseLeave={() => setHoveredChallenge(null)}
               >
-                <div className="flex items-start md:gap-8">
-                  {/* Visual Element */}
-                  <div className="hidden md:flex flex-shrink-0">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold transition-all duration-300"
-                      style={{ background: challenge.gradient }}
-                    >
-                      {index + 1}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h4
-                      className="text-xl font-semibold mb-4 transition-all duration-300"
-                      style={{
-                        color:
-                          hoveredChallenge === index ? "#ED6335" : "#662C8F",
-                      }}
-                    >
-                      {challenge.title}
-                    </h4>
-                    <p
-                      className="text-base leading-relaxed"
-                      style={{ color: "#662C8F" }}
-                    >
-                      {challenge.content}
-                    </p>
+                {/* Number Badge - Floating */}
+                <div
+                  className="absolute -left-2 md:-left-20 top-0 transition-all duration-500"
+                  style={{
+                    transform:
+                      hoveredChallenge === index ? "scale(1.15)" : "scale(1)",
+                  }}
+                >
+                  <div
+                    className="w-8 h-8 md:w-16 md:h-16 rounded-full flex items-center justify-center text-white font-bold text-base md:text-2xl"
+                    style={{
+                      background: challenge.gradient,
+                      boxShadow:
+                        hoveredChallenge === index
+                          ? "0 8px 20px rgba(0,0,0,0.2)"
+                          : "0 3px 10px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    {index + 1}
                   </div>
                 </div>
+
+                {/* Content */}
+                <div className="pl-12 md:pl-4">
+                  <h4
+                    className="text-lg md:text-3xl font-semibold mb-3 transition-all duration-300"
+                    style={{
+                      color: hoveredChallenge === index ? "#ED6335" : "#662C8F",
+                    }}
+                  >
+                    {challenge.title}
+                  </h4>
+                  <p
+                    className="text-sm md:text-lg leading-relaxed opacity-90"
+                    style={{ color: "#662C8F" }}
+                  >
+                    {challenge.content}
+                  </p>
+                </div>
+
+                {/* Connecting Line */}
+                {index < challenges.length - 1 && (
+                  <div
+                    className="absolute left-2 md:left-[-44px] top-16 md:top-20 w-px h-16 md:h-20 opacity-20"
+                    style={{ backgroundColor: "#662C8F" }}
+                  ></div>
+                )}
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Central Question */}
-          <div className="text-center mt-12">
-            <p className="text-2xl md:text-3xl font-light italic">
-              <span style={{ color: "#662C8F" }}>
-                "Bagaimana caranya agar bisnis keluarga tidak sekadar bertahan,
-              </span>
-              <br />
-              <span
-                className="text-transparent bg-clip-text bg-gradient-to-r font-normal mt-2"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #ED6335, #F7941D)",
-                }}
-              >
-                tetapi juga tumbuh dengan identitas yang relevan?"
-              </span>
-            </p>
-          </div>
-
-          {/* Solution Preview */}
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
-            <div
-              className="backdrop-blur-sm rounded-2xl p-8 border"
+        {/* Central Question - Redesigned */}
+        {/* <div className="text-center mb-20 relative py-12">
+          <p className="text-2xl md:text-4xl font-light italic leading-relaxed max-w-5xl mx-auto">
+            <span style={{ color: "#662C8F" }}>
+              "Bagaimana caranya agar bisnis keluarga tidak sekadar bertahan,
+            </span>
+            <br />
+            <span
+              className="text-transparent bg-clip-text bg-gradient-to-r font-normal mt-2"
               style={{
-                backgroundColor: "rgba(237, 99, 53, 0.05)",
-                borderColor: "#ED6335",
+                backgroundImage: "linear-gradient(135deg, #ED6335, #F7941D)",
               }}
             >
-              <h4
-                className="text-xl font-semibold mb-4"
-                style={{ color: "#ED6335" }}
+              tetapi juga tumbuh dengan identitas yang relevan?"
+            </span>
+          </p>
+        </div> */}
+
+        {/* Solution Preview - Redesigned */}
+        {/* <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="relative group">
+            <div
+              className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                filter: "blur(20px)",
+              }}
+            ></div>
+            <div className="relative p-8 md:p-10">
+              <div
+                className="inline-block px-6 py-2 rounded-full mb-6"
+                style={{
+                  background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                }}
               >
-                Solusi LEGACY
-              </h4>
+                <h4 className="text-lg md:text-xl font-semibold text-white">
+                  Solusi LEGACY
+                </h4>
+              </div>
               <p
-                className="text-base leading-relaxed"
+                className="text-base md:text-lg leading-relaxed"
                 style={{ color: "#662C8F" }}
               >
                 Program yang menggabungkan pembelajaran praktis, networking
@@ -318,22 +373,29 @@ export default function Theme() {
                 generasi penerus dalam menghadapi tantangan bisnis modern.
               </p>
             </div>
+          </div>
 
+          <div className="relative group">
             <div
-              className="backdrop-blur-sm rounded-2xl p-8 border"
+              className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               style={{
-                backgroundColor: "rgba(247, 148, 29, 0.05)",
-                borderColor: "#F7941D",
+                background: "linear-gradient(135deg, #F7941D, #C59CDE)",
+                filter: "blur(20px)",
               }}
-            >
-              <h4
-                className="text-xl font-semibold mb-4"
-                style={{ color: "#F7941D" }}
+            ></div>
+            <div className="relative p-8 md:p-10">
+              <div
+                className="inline-block px-6 py-2 rounded-full mb-6"
+                style={{
+                  background: "linear-gradient(135deg, #F7941D, #C59CDE)",
+                }}
               >
-                Pendekatan Unik
-              </h4>
+                <h4 className="text-lg md:text-xl font-semibold text-white">
+                  Pendekatan Unik
+                </h4>
+              </div>
               <p
-                className="text-base leading-relaxed"
+                className="text-base md:text-lg leading-relaxed"
                 style={{ color: "#662C8F" }}
               >
                 Belajar dengan praktik langsung melalui real-life business
@@ -342,7 +404,7 @@ export default function Theme() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`

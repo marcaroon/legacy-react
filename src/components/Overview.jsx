@@ -85,17 +85,13 @@ export default function Overview() {
 
   useEffect(() => {
     setIsVisible(true);
-    const interval = setInterval(() => {
-      setSelectedProgram((prev) => (prev + 1) % programs.length);
-    }, 1);
-    return () => clearInterval(interval);
   }, []);
 
   return (
     <section
       id="overview"
       className="py-20 px-6 relative overflow-hidden min-h-screen"
-      style={{ backgroundColor: "#FFFFFF" }}
+      style={{ backgroundColor: "#F5F4F2" }}
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
@@ -158,13 +154,13 @@ export default function Overview() {
           </p>
         </div>
 
-        {/* Interactive Programs Grid */}
+        {/* Seamless Programs Flow Layout */}
         <div className="mb-20">
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-12">
             {programs.map((program, index) => (
               <div
                 key={index}
-                className="group backdrop-blur-lg rounded-2xl p-8 border-2 transition-all duration-500 cursor-pointer hover:scale-105"
+                className="group backdrop-blur-lg rounded-2xl p-6 md:p-8 border-2 transition-all duration-500 cursor-pointer hover:scale-105 flex-grow"
                 style={{
                   backgroundColor:
                     selectedProgram === index
@@ -176,6 +172,8 @@ export default function Overview() {
                     selectedProgram === index
                       ? "0 20px 40px rgba(102, 44, 143, 0.1)"
                       : "none",
+                  minWidth: "280px",
+                  maxWidth: "340px",
                 }}
                 onMouseEnter={() => setSelectedProgram(index)}
               >
@@ -204,61 +202,111 @@ export default function Overview() {
         </div>
 
         {/* Legacy Training Camp Highlight */}
-        <div
-          className="backdrop-blur-lg rounded-3xl p-12 border mb-20"
-          style={{
-            backgroundColor: "rgba(237, 99, 53, 0.05)",
-            borderColor: "#ED6335",
-          }}
-        >
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-4 mb-6">
-              <h3 className="text-4xl font-normal" style={{ color: "#662C8F" }}>
-                Legacy Training Camp
-              </h3>
-            </div>
-
-            <p
-              className="text-xl font-light leading-relaxed max-w-4xl mx-auto mb-8"
+        <div className="mb-20 relative">
+          <div className="text-center mb-16">
+            <h3
+              className="text-5xl md:text-6xl font-light mb-6"
               style={{ color: "#662C8F" }}
             >
-              Program pelatihan interaktif untuk mempersiapkan calon penerus
-              bisnis keluarga di seluruh Indonesia. Fokus pada pengembangan
-              keterampilan kepemimpinan, kolaborasi tim, dan real-life business
-              practice.
-            </p>
+              Legacy Training Camp
+            </h3>
 
-            {/* Event Details */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-              <div
-                className="backdrop-blur-sm rounded-2xl p-6 border"
-                style={{
-                  backgroundColor: "rgba(255, 255, 255, 0.8)",
-                  borderColor: "#F7941D",
-                }}
+            <div className="max-w-4xl mx-auto mb-12">
+              <p
+                className="text-xl md:text-2xl font-light leading-relaxed"
+                style={{ color: "#662C8F" }}
               >
-                <div className="text-3xl mb-3">📅</div>
-                <h4 className="font-semibold mb-2" style={{ color: "#662C8F" }}>
-                  Tanggal
-                </h4>
-                <p className="text-lg font-medium" style={{ color: "#ED6335" }}>
+                Program pelatihan interaktif untuk mempersiapkan calon penerus
+                bisnis keluarga di seluruh Indonesia. Fokus pada pengembangan
+                keterampilan kepemimpinan, kolaborasi tim, dan real-life
+                business practice.
+              </p>
+            </div>
+
+            {/* Event Details - Flowing Design */}
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center">
+              <div className="flex flex-col items-center">
+                <div
+                  className="text-6xl mb-4 transform hover:scale-110 transition-transform duration-300"
+                  style={{
+                    filter: "drop-shadow(0 4px 8px rgba(237, 99, 53, 0.2))",
+                  }}
+                >
+                  📅
+                </div>
+                <p
+                  className="text-3xl md:text-4xl font-medium mb-2"
+                  style={{
+                    background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
                   9-11 Januari 2026
+                </p>
+                <p className="text-sm font-light" style={{ color: "#662C8F" }}>
+                  Tanggal Pelaksanaan
                 </p>
               </div>
 
               <div
-                className="backdrop-blur-sm rounded-2xl p-6 border"
-                style={{
-                  backgroundColor: "rgba(255, 255, 255, 0.8)",
-                  borderColor: "#F7941D",
-                }}
-              >
-                <div className="text-3xl mb-3">⏱️</div>
-                <h4 className="font-semibold mb-2" style={{ color: "#662C8F" }}>
-                  Durasi
-                </h4>
-                <p className="text-lg font-medium" style={{ color: "#ED6335" }}>
+                className="hidden md:block w-px h-24 opacity-30"
+                style={{ backgroundColor: "#662C8F" }}
+              ></div>
+
+              <div className="flex flex-col items-center">
+                <div
+                  className="text-6xl mb-4 transform hover:scale-110 transition-transform duration-300"
+                  style={{
+                    filter: "drop-shadow(0 4px 8px rgba(237, 99, 53, 0.2))",
+                  }}
+                >
+                  ⏱️
+                </div>
+                <p
+                  className="text-3xl md:text-4xl font-medium mb-2"
+                  style={{
+                    background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
                   3 Hari 2 Malam
+                </p>
+                <p className="text-sm font-light" style={{ color: "#662C8F" }}>
+                  Durasi Program
+                </p>
+              </div>
+
+              <div
+                className="hidden md:block w-px h-24 opacity-30"
+                style={{ backgroundColor: "#662C8F" }}
+              ></div>
+
+              <div className="flex flex-col items-center">
+                <div
+                  className="text-6xl mb-4 transform hover:scale-110 transition-transform duration-300"
+                  style={{
+                    filter: "drop-shadow(0 4px 8px rgba(237, 99, 53, 0.2))",
+                  }}
+                >
+                  📍
+                </div>
+                <p
+                  className="text-3xl md:text-4xl font-medium mb-2"
+                  style={{
+                    background: "linear-gradient(135deg, #ED6335, #F7941D)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Lembah Indah
+                </p>
+                <p className="text-sm font-light" style={{ color: "#662C8F" }}>
+                  Malang, Jawa Timur
                 </p>
               </div>
             </div>
@@ -266,52 +314,58 @@ export default function Overview() {
         </div>
 
         {/* Who Can Join Section */}
-        <div
-          className="backdrop-blur-lg rounded-3xl p-12 border"
-          style={{
-            backgroundColor: "rgba(102, 44, 143, 0.05)",
-            borderColor: "#C59CDE",
-          }}
-        >
+        <div className="relative">
           <h3
-            className="text-4xl font-light mb-12 text-center"
+            className="text-4xl md:text-5xl font-light mb-16 text-center"
             style={{ color: "#662C8F" }}
           >
             Who can join this program?
           </h3>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-12 max-w-5xl mx-auto">
             {criteria.map((item, index) => (
               <div
                 key={index}
-                className="group backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 cursor-pointer hover:scale-105"
-                style={{
-                  backgroundColor:
-                    hoveredCriteria === index
-                      ? "rgba(255, 255, 255, 0.9)"
-                      : "rgba(255, 255, 255, 0.7)",
-                  borderColor: item.color + "30",
-                }}
+                className="group transition-all duration-500 cursor-pointer hover:translate-x-4"
                 onMouseEnter={() => setHoveredCriteria(index)}
                 onMouseLeave={() => setHoveredCriteria(null)}
               >
-                <div className="flex items-start md:gap-6">
-                  {/* Bullet */}
-                  <div
-                    className="hidden md:flex w-6 h-6 rounded-full mt-1 flex-shrink-0"
-                    style={{ backgroundColor: item.color }}
-                  ></div>
+                <div className="flex items-start gap-6">
+                  {/* Animated Bullet */}
+                  <div className="relative flex-shrink-0 mt-1">
+                    <div
+                      className="w-8 h-8 rounded-full transition-all duration-500"
+                      style={{
+                        backgroundColor: item.color,
+                        transform:
+                          hoveredCriteria === index ? "scale(1.3)" : "scale(1)",
+                        boxShadow:
+                          hoveredCriteria === index
+                            ? `0 0 20px ${item.color}60`
+                            : "none",
+                      }}
+                    ></div>
+                    {index < criteria.length - 1 && (
+                      <div
+                        className="absolute left-1/2 top-8 w-0.5 h-12 -translate-x-1/2 opacity-20"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                    )}
+                  </div>
 
                   {/* Content */}
-                  <div className="flex-1">
+                  <div className="flex-1 pb-8">
                     <h4
-                      className="font-semibold mb-4 leading-relaxed"
-                      style={{ color: "#662C8F" }}
+                      className="text-xl md:text-2xl font-semibold mb-3 leading-relaxed transition-colors duration-300"
+                      style={{
+                        color:
+                          hoveredCriteria === index ? item.color : "#662C8F",
+                      }}
                     >
                       {item.title}
                     </h4>
                     <p
-                      className="text-sm leading-relaxed"
+                      className="text-base md:text-lg leading-relaxed opacity-90"
                       style={{ color: "#662C8F" }}
                     >
                       {item.description}
@@ -321,45 +375,6 @@ export default function Overview() {
               </div>
             ))}
           </div>
-
-          {/* Call to Action */}
-          {/* <div className="text-center mt-12">
-            <div
-              className="backdrop-blur-sm rounded-2xl p-8 border max-w-2xl mx-auto"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-                borderColor: "#E1CAF6",
-              }}
-            >
-              <p
-                className="text-xl font-light mb-6"
-                style={{ color: "#662C8F" }}
-              >
-                Siap menjadi bagian dari transformasi bisnis keluarga Indonesia?
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  className="px-10 py-4 rounded-full font-medium text-white text-lg transition-all duration-300 transform hover:scale-105"
-                  style={{
-                    background: "linear-gradient(135deg, #662C8F, #C59CDE)",
-                  }}
-                >
-                  Bergabung Sekarang
-                </button>
-                <button
-                  className="px-10 py-4 rounded-full font-medium text-lg border-2 transition-all duration-300 hover:scale-105"
-                  style={{
-                    color: "#ED6335",
-                    borderColor: "#ED6335",
-                    backgroundColor: "rgba(237, 99, 53, 0.1)",
-                  }}
-                >
-                  Lihat Timeline
-                </button>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

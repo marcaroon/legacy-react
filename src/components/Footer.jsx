@@ -88,7 +88,7 @@ export default function Footer() {
                 <strong>Target:</strong> 17-29 tahun
               </p>
               <p style={{ color: "#662C8F" }}>
-                <strong>Lokasi:</strong> Seluruh Indonesia
+                <strong>Lokasi:</strong> Lembah Indah, Malang, Jawa Timur
               </p>
             </div>
           </div>
