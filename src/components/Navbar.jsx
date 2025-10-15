@@ -69,6 +69,21 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  const handleNavbarRegisterClick = () => {
+    const section = document.getElementById("registration");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("trackCustom", "ClickNavbarRegister", {
+        location: "Navbar Desktop",
+        action: "Scroll to Registration Section",
+      });
+      // console.log("[Meta Pixel] ClickNavbarRegister - Desktop button clicked");
+    }
+  };
+
   return (
     <>
       <nav
@@ -164,7 +179,7 @@ export default function Navbar() {
                   href="#registration"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick("#registration");
+                    handleNavbarRegisterClick();
                   }}
                   className="group relative px-6 py-2 rounded-full font-semibold text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg overflow-hidden"
                   style={{
@@ -381,6 +396,16 @@ export default function Navbar() {
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick("#registration");
+
+                    if (typeof window !== "undefined" && window.fbq) {
+                      window.fbq("trackCustom", "ClickNavbarRegister", {
+                        location: "Navbar Mobile",
+                        action: "Scroll to Registration Section",
+                      });
+                      // console.log(
+                      //   "[Meta Pixel] ClickNavbarRegister - Mobile button clicked"
+                      // );
+                    }
                   }}
                   className="group relative block w-full text-center py-4 px-6 rounded-2xl font-semibold text-white transition-all duration-300 transform hover:scale-105 overflow-hidden border"
                   style={{

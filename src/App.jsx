@@ -16,11 +16,15 @@ import PaymentPending from "./pages/Payment/PaymentPending";
 import PaymentError from "./pages/Payment/PaymentError";
 import PaymentStatus from "./pages/Payment/PaymentStatus";
 import WhatsAppButton from "./components/WhatsappButton";
-import Speakers from "./components/Speakers";
+import FacebookPixel from "./components/FacebookPixel";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+// import Speakers from "./components/Speakers";
 
 export default function App() {
   return (
     <Router>
+      <FacebookPixel />
       <Routes>
         {/* Landing Page */}
         <Route
@@ -59,6 +63,8 @@ export default function App() {
 
         <Route path="/payment/status" element={<PaymentSuccess />} />
         <Route path="/about-detail" element={<AboutDetail />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
       </Routes>
     </Router>
   );

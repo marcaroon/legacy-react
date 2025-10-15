@@ -111,6 +111,7 @@ export default function PaymentStatus() {
     switch (status) {
       case "paid":
         return {
+          headerTitle: "Pembayaran Berhasil",
           title: "Pembayaran Berhasil!",
           message:
             "Terima kasih! Pembayaran Anda telah berhasil diproses dan registrasi dikonfirmasi.",
@@ -120,6 +121,7 @@ export default function PaymentStatus() {
         };
       case "pending":
         return {
+          headerTitle: "Pembayaran Tertunda",
           title: "Pembayaran Sedang Diproses",
           message:
             "Pembayaran Anda sedang dalam proses. Mohon tunggu konfirmasi dari sistem pembayaran.",
@@ -129,6 +131,7 @@ export default function PaymentStatus() {
         };
       case "failed":
         return {
+          headerTitle: "Pembayaran Gagal",
           title: "Pembayaran Gagal",
           message:
             "Pembayaran tidak dapat diproses. Silakan coba lagi atau hubungi customer service.",
@@ -138,6 +141,7 @@ export default function PaymentStatus() {
         };
       case "cancelled":
         return {
+          headerTitle: "Pembayaran Dibatalkan",
           title: "Pembayaran Dibatalkan",
           message:
             "Pembayaran telah dibatalkan. Anda dapat mendaftar ulang kapan saja.",
@@ -147,6 +151,7 @@ export default function PaymentStatus() {
         };
       case "expired":
         return {
+          headerTitle: "Pembayaran Kedaluwarsa",
           title: "Pembayaran Kedaluwarsa",
           message:
             "Waktu pembayaran telah habis. Silakan daftar ulang untuk melanjutkan.",
@@ -156,6 +161,7 @@ export default function PaymentStatus() {
         };
       default:
         return {
+          headerTitle: "Status Pembayaran",
           title: "Status Tidak Diketahui",
           message:
             "Status pembayaran tidak dapat ditentukan. Hubungi customer service untuk bantuan.",
@@ -356,7 +362,7 @@ export default function PaymentStatus() {
           {/* Status Header */}
           <div className="text-center">
             <div
-              className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+              className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 animate-[fadeIn_0.5s_ease-out]"
               style={{
                 background: statusConfig.bgGradient,
                 boxShadow: `0 20px 40px ${statusConfig.shadowColor}`,
@@ -364,22 +370,23 @@ export default function PaymentStatus() {
             >
               {getStatusIcon(registration?.paymentStatus)}
             </div>
+
             <h1
-              className="text-4xl md:text-6xl font-light mb-8 leading-tight"
+              className="text-4xl md:text-6xl font-light mb-4 leading-tight transition-all duration-500"
               style={{ color: "#662C8F" }}
             >
-              Status
               <span
-                className="block text-transparent bg-clip-text bg-gradient-to-r font-normal mt-2"
+                className="block text-transparent bg-clip-text bg-gradient-to-r font-normal animate-[slideDown_0.6s_ease-out]"
                 style={{
                   backgroundImage: statusConfig.textGradient,
                 }}
               >
-                Pembayaran
+                {statusConfig.headerTitle}
               </span>
             </h1>
+
             <p
-              className="text-xl font-light max-w-4xl mx-auto leading-relaxed"
+              className="text-xl font-light max-w-4xl mx-auto leading-relaxed mt-6 animate-[fadeIn_0.8s_ease-out]"
               style={{ color: "#662C8F" }}
             >
               {statusConfig.message}
@@ -725,3 +732,27 @@ export default function PaymentStatus() {
     </div>
   );
 }
+
+<style jsx>{`
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`}</style>;

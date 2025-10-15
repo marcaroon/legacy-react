@@ -162,7 +162,8 @@ export default function About({ onNavigateToDetail }) {
               <div
                 className="relative overflow-hidden rounded-3xl transition-all duration-700 h-full flex flex-col justify-between p-10 lg:p-12"
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(225,202,246,0.2))",
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(225,202,246,0.2))",
                   backdropFilter: "blur(10px)",
                   boxShadow: "0 8px 32px rgba(102, 44, 143, 0.08)",
                 }}
@@ -212,7 +213,8 @@ export default function About({ onNavigateToDetail }) {
               <div
                 className="relative overflow-hidden rounded-3xl h-full flex flex-col justify-center p-10 lg:p-12"
                 style={{
-                  background: "linear-gradient(135deg, rgba(237,99,53,0.08), rgba(255,255,255,0.95))",
+                  background:
+                    "linear-gradient(135deg, rgba(237,99,53,0.08), rgba(255,255,255,0.95))",
                   backdropFilter: "blur(10px)",
                   boxShadow: "0 8px 32px rgba(237, 99, 53, 0.08)",
                 }}
@@ -231,7 +233,7 @@ export default function About({ onNavigateToDetail }) {
                 >
                   Visi Komunitas
                 </h3>
-                
+
                 <p
                   className="text-base lg:text-lg leading-relaxed mb-10"
                   style={{ color: "#662C8F", opacity: 0.85 }}
@@ -271,8 +273,8 @@ export default function About({ onNavigateToDetail }) {
 
         {/* Instagram Embed Section - More Integrated */}
         <div className="flex justify-center">
-          <div 
-            ref={instagramRef} 
+          <div
+            ref={instagramRef}
             className="w-full max-w-lg mx-auto rounded-3xl overflow-hidden"
             style={{
               boxShadow: "0 8px 32px rgba(102, 44, 143, 0.1)",
@@ -280,7 +282,7 @@ export default function About({ onNavigateToDetail }) {
           >
             <blockquote
               className="instagram-media"
-              data-instgrm-permalink="https://www.instagram.com/reel/DOxtPZAkShQ/?utm_source=ig_embed&utm_campaign=loading"
+              data-instgrm-permalink="https://www.instagram.com/reel/DPdpNFhkY5T/?utm_source=ig_embed&utm_campaign=loading"
               data-instgrm-version="14"
               style={{
                 background: "#FFF",
@@ -296,7 +298,7 @@ export default function About({ onNavigateToDetail }) {
             >
               <div style={{ padding: "16px" }}>
                 <a
-                  href="https://www.instagram.com/reel/DOxtPZAkShQ/?utm_source=ig_embed&utm_campaign=loading"
+                  href="https://www.instagram.com/reel/DPdpNFhkY5T/?utm_source=ig_embed&utm_campaign=loading"
                   style={{
                     background: "#FFFFFF",
                     lineHeight: 0,
@@ -410,7 +412,8 @@ export default function About({ onNavigateToDetail }) {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px);
           }
           50% {

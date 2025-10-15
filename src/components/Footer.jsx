@@ -112,7 +112,7 @@ export default function Footer() {
                 >
                   <strong
                     style={{
-                      color: hoveredSocial === index ? "#ED6335" : "#662C8F",
+                      color: hoveredSocial === index ? "#662C8F" : "#662C8F",
                     }}
                   >
                     {social.name}:
@@ -126,8 +126,8 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div
-          className="border-t pt-8 text-center"
-          style={{ borderColor: "rgba(102, 44, 143, 0.2)" }}
+          className="border-t pt-8 text-center font-light"
+          style={{ borderColor: "rgba(102, 44, 143, 0.2)", color: "#662C8F" }}
         >
           <div className="mb-4">
             <p className="text-2xl font-light mb-2">
@@ -142,9 +142,24 @@ export default function Footer() {
               </span>
             </p>
           </div>
-          <p className="font-light" style={{ color: "#662C8F" }}>
-            © 2025 LEGACY Indonesia. All rights reserved.
+          <p className="font-light mb-1" style={{ color: "#662C8F" }}>
+            © 2025 LEGACY Indonesia. All rights reserved
           </p>
+          <a
+            href="/privacy-policy"
+            className="font-light underline"
+            style={{ color: "#662C8F" }}
+          >
+            Privacy Policy{" "}
+          </a>{" "}
+          |{" "}
+          <a
+            href="/refund-policy"
+            className="font-light underline"
+            style={{ color: "#662C8F" }}
+          >
+            Refund Policy
+          </a>
         </div>
       </div>
 

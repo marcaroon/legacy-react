@@ -13,6 +13,34 @@ export default function Registration() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const section = document.getElementById("registration");
+    let hasTrackedView = false;
+
+    const handleScroll = () => {
+      if (!section || hasTrackedView) return;
+
+      const rect = section.getBoundingClientRect();
+      const isVisible =
+        rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0;
+
+      if (isVisible) {
+        if (typeof window !== "undefined" && window.fbq) {
+          window.fbq("track", "ViewContent", {
+            content_name: "Program Section",
+            content_category: "Registration",
+          });
+          // console.log("[Meta Pixel] ViewContent - Registration section viewed");
+        }
+        hasTrackedView = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     const fetchPrograms = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/programs`);
@@ -68,6 +96,19 @@ export default function Registration() {
   }, []);
 
   const handleRegister = (packageData) => {
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("trackCustom", "ViewProgramDetail", {
+        program_name: packageData.title,
+        price: packageData.currentPrice,
+      });
+      // console.log("[Meta Pixel] ViewProgramDetail:", packageData.title);
+
+      window.fbq("track", "Lead", {
+        content_name: packageData.title,
+      });
+      // console.log("[Meta Pixel] Lead:", packageData.title);
+    }
+
     navigate("/register", {
       state: {
         programId: packageData.id,

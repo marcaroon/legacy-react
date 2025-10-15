@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useLocation, useNavigate } from "react-router-dom";
 import { Trash, ArrowLeft } from "lucide-react";
 
 const steps = ["Data Peserta", "Rincian Program", "Pembayaran"];
@@ -594,6 +594,13 @@ export default function RegisterSteps() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const CLIENT_KEY = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
 
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
+
+  const handlePolicyLinkClick = (e, path) => {
+    e.preventDefault();
+    window.open(path, "_blank");
+  };
+
   const [currentStep, setCurrentStep] = useState(1);
   const [participants, setParticipants] = useState([
     {
@@ -615,6 +622,7 @@ export default function RegisterSteps() {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://app.midtrans.com/snap/snap.js";
+    // script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
     script.setAttribute("data-client-key", CLIENT_KEY);
     document.body.appendChild(script);
 
@@ -815,6 +823,14 @@ export default function RegisterSteps() {
   };
 
   const handlePayment = async () => {
+    if (window.fbq) {
+      window.fbq("trackCustom", "InitiateCheckout", {
+        program_id: programId,
+        total_amount: total,
+        participants_count: participants.length,
+      });
+    }
+
     if (!programId) {
       alert("Program ID tidak ditemukan");
       return;
@@ -2060,27 +2076,150 @@ export default function RegisterSteps() {
                       </div>
                     </div>
 
+                    <div
+                      className="backdrop-blur-lg rounded-xl sm:rounded-2xl p-5 sm:p-6 border-2 mb-6 sm:mb-8 transition-all duration-300"
+                      style={{
+                        backgroundColor: "rgba(102, 44, 143, 0.03)",
+                        borderColor: agreedToPolicy ? "#C59CDE" : "#E1CAF6",
+                      }}
+                    >
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        {/* Custom Checkbox */}
+                        <div className="relative flex-shrink-0 mt-0.5">
+                          <input
+                            type="checkbox"
+                            id="policy-agreement"
+                            checked={agreedToPolicy}
+                            onChange={(e) =>
+                              setAgreedToPolicy(e.target.checked)
+                            }
+                            className="peer sr-only"
+                          />
+                          <label
+                            htmlFor="policy-agreement"
+                            className="block w-5 h-5 sm:w-6 sm:h-6 rounded-md border-2 cursor-pointer transition-all duration-300 ease-out peer-checked:border-transparent"
+                            style={{
+                              borderColor: agreedToPolicy
+                                ? "#662C8F"
+                                : "#C59CDE",
+                              backgroundColor: agreedToPolicy
+                                ? "#662C8F"
+                                : "transparent",
+                              transform: agreedToPolicy
+                                ? "scale(1.05)"
+                                : "scale(1)",
+                            }}
+                          >
+                            {/* Checkmark Icon */}
+                            <svg
+                              className={`w-full h-full p-0.5 transition-all duration-300 ${
+                                agreedToPolicy
+                                  ? "opacity-100 scale-100"
+                                  : "opacity-0 scale-50"
+                              }`}
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10L9 13L14 7"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                  strokeDasharray: agreedToPolicy ? "20" : "0",
+                                  strokeDashoffset: agreedToPolicy ? "0" : "20",
+                                  transition: "stroke-dashoffset 0.3s ease-out",
+                                }}
+                              />
+                            </svg>
+                          </label>
+                        </div>
+
+                        <label
+                          htmlFor="policy-agreement"
+                          className="text-sm sm:text-base leading-relaxed cursor-pointer select-none"
+                          style={{ color: "#662C8F" }}
+                        >
+                          Saya telah membaca dan menyetujui{" "}
+                          <button
+                            onClick={(e) =>
+                              handlePolicyLinkClick(e, "/privacy-policy")
+                            }
+                            className="underline hover:underline transition-all duration-200 relative inline-block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full"
+                            style={{
+                              color: "#662C8F",
+                            }}
+                          >
+                            Kebijakan Privasi
+                          </button>{" "}
+                          dan{" "}
+                          <button
+                            onClick={(e) =>
+                              handlePolicyLinkClick(e, "/refund-policy")
+                            }
+                            className="underline hover:underline transition-all duration-200 relative inline-block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full"
+                            style={{
+                              color: "#662C8F",
+                            }}
+                          >
+                            Kebijakan Pengembalian Dana
+                          </button>{" "}
+                          dari LEGACY.
+                        </label>
+                      </div>
+
+                      {/* Error Message dengan animasi slide down */}
+                      <div
+                        className="overflow-hidden transition-all duration-300 ease-out"
+                        style={{
+                          maxHeight: !agreedToPolicy ? "100px" : "0",
+                          opacity: !agreedToPolicy ? "1" : "0",
+                        }}
+                      >
+                        <div className="mt-3 ml-8 sm:ml-10 flex items-start space-x-2">
+                          <svg
+                            className="w-4 h-4 flex-shrink-0 mt-0.5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            style={{ color: "#EF4444" }}
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <p
+                            className="text-xs sm:text-sm font-medium"
+                            style={{ color: "#EF4444" }}
+                          >
+                            Anda harus menyetujui kebijakan untuk melanjutkan
+                            pembayaran
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="flex flex-col sm:flex-row justify-between items-center pt-6 sm:pt-8 border-t border-gray-200 space-y-4 sm:space-y-0">
-                      {" "}
-                      {/* Added flex-col for mobile, space-y */}
                       <button
                         onClick={() => setCurrentStep(2)}
-                        className="w-full sm:w-auto px-5 py-2 sm:px-6 sm:py-3 bg-white border-2 text-gray-600 rounded-full font-medium transition-all duration-300 transform hover:scale-105 text-sm sm:text-base" // Adjusted width, padding, and font size
+                        className="w-full sm:w-auto px-5 py-2 sm:px-6 sm:py-3 bg-white border-2 text-gray-600 rounded-full font-medium transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                         style={{ borderColor: "#E5E7EB" }}
                       >
                         Kembali
                       </button>
                       <button
                         onClick={handlePayment}
-                        disabled={isLoading}
-                        className={`w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 rounded-full text-white font-medium text-base sm:text-lg transition-all duration-300 transform hover:scale-105 ${
-                          // Adjusted width, padding, and font size
-                          isLoading
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "hover:shadow-xl"
+                        disabled={isLoading || !agreedToPolicy}
+                        className={`w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 rounded-full text-white font-medium text-base sm:text-lg transition-all duration-300 transform ${
+                          isLoading || !agreedToPolicy
+                            ? "bg-gray-400 cursor-not-allowed opacity-60"
+                            : "hover:scale-105 hover:shadow-xl"
                         }`}
                         style={
-                          !isLoading
+                          !isLoading && agreedToPolicy
                             ? {
                                 background:
                                   "linear-gradient(135deg, #22c55e, #16a34a)",
@@ -2091,10 +2230,7 @@ export default function RegisterSteps() {
                       >
                         {isLoading ? (
                           <div className="flex items-center space-x-2 sm:space-x-3">
-                            {" "}
-                            {/* Adjusted space-x */}
-                            <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white"></div>{" "}
-                            {/* Adjusted sizes */}
+                            <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white"></div>
                             <span>Memproses Pembayaran...</span>
                           </div>
                         ) : (
