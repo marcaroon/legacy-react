@@ -19,6 +19,8 @@ import WhatsAppButton from "./components/WhatsappButton";
 import FacebookPixel from "./components/FacebookPixel";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import DeliveryPolicy from "./pages/DeliveryPolicy";
+import BankTransferPayment from "./pages/BankTransferPayment";
 // import Speakers from "./components/Speakers";
 
 export default function App() {
@@ -65,6 +67,11 @@ export default function App() {
         <Route path="/about-detail" element={<AboutDetail />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/delivery-policy" element={<DeliveryPolicy />} />
+        <Route
+          path="/payment/bank-transfer/:registrationId"
+          element={<BankTransferPayment />}
+        />
       </Routes>
     </Router>
   );

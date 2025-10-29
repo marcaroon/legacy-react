@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Trash, ArrowLeft } from "lucide-react";
+import PaymentMethodModal from "../components/PaymentMethodModal";
 
 const steps = ["Data Peserta", "Rincian Program", "Pembayaran"];
 
@@ -596,6 +597,9 @@ export default function RegisterSteps() {
 
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
 
+  const [showPaymentMethodModal, setShowPaymentMethodModal] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+
   const handlePolicyLinkClick = (e, path) => {
     e.preventDefault();
     window.open(path, "_blank");
@@ -621,8 +625,8 @@ export default function RegisterSteps() {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://app.midtrans.com/snap/snap.js";
-    // script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+    // script.src = "https://app.midtrans.com/snap/snap.js";
+    script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
     script.setAttribute("data-client-key", CLIENT_KEY);
     document.body.appendChild(script);
 
@@ -823,11 +827,91 @@ export default function RegisterSteps() {
   };
 
   const handlePayment = async () => {
+    if (!selectedPaymentMethod) {
+      // Tampilkan modal untuk memilih metode pembayaran
+      setShowPaymentMethodModal(true);
+      return;
+    }
+
+    if (selectedPaymentMethod === "bank_transfer") {
+      // Proses pendaftaran untuk bank transfer
+      await handleBankTransferRegistration();
+    } else {
+      // Proses pendaftaran untuk VA (existing flow)
+      await handleVARegistration();
+    }
+  };
+
+  const handlePaymentMethodSelect = (method) => {
+    setSelectedPaymentMethod(method);
+    setShowPaymentMethodModal(false);
+
+    // Trigger payment setelah metode dipilih
+    if (method === "bank_transfer") {
+      handleBankTransferRegistration();
+    } else {
+      handleVARegistration();
+    }
+  };
+
+  const handleBankTransferRegistration = async () => {
     if (window.fbq) {
       window.fbq("trackCustom", "InitiateCheckout", {
         program_id: programId,
         total_amount: total,
         participants_count: participants.length,
+        payment_method: "bank_transfer",
+      });
+    }
+
+    if (!programId) {
+      alert("Program ID tidak ditemukan");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const registrationData = {
+        program_id: programId,
+        contact_name: participants[0].name,
+        contact_email: participants[0].email,
+        contact_phone: participants[0].phone,
+        participants: participants,
+      };
+
+      const response = await fetch(`${API_BASE_URL}/register/bank-transfer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        localStorage.setItem("registration_id", result.data.registration_id);
+        // Redirect ke halaman bank transfer
+        navigate(`/payment/bank-transfer/${result.data.registration_id}`);
+      } else {
+        alert(result.message || "Terjadi kesalahan saat mendaftar");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleVARegistration = async () => {
+    if (window.fbq) {
+      window.fbq("trackCustom", "InitiateCheckout", {
+        program_id: programId,
+        total_amount: total,
+        participants_count: participants.length,
+        payment_method: "va",
       });
     }
 
@@ -926,13 +1010,9 @@ export default function RegisterSteps() {
                     console.error("Error handling payment closure:", error);
                   });
               }
-
-              // HAPUS alert ini jika tidak di-cancel
-              // alert("Pendaftaran dibatalkan karena pembayaran tidak diselesaikan");
             },
           });
         } else {
-          // fallback klo pop up snap belum loaded
           console.error("Midtrans Snap not loaded");
           alert(
             "Sedang memuat sistem pembayaran. Silakan coba lagi dalam beberapa detik."
@@ -2211,7 +2291,10 @@ export default function RegisterSteps() {
                         Kembali
                       </button>
                       <button
-                        onClick={handlePayment}
+                        onClick={() => {
+                          setSelectedPaymentMethod(null); // Reset metode pembayaran
+                          handlePayment();
+                        }}
                         disabled={isLoading || !agreedToPolicy}
                         className={`w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 rounded-full text-white font-medium text-base sm:text-lg transition-all duration-300 transform ${
                           isLoading || !agreedToPolicy
@@ -2231,7 +2314,7 @@ export default function RegisterSteps() {
                         {isLoading ? (
                           <div className="flex items-center space-x-2 sm:space-x-3">
                             <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white"></div>
-                            <span>Memproses Pembayaran...</span>
+                            <span>Memproses...</span>
                           </div>
                         ) : (
                           "Bayar Sekarang"
@@ -2245,6 +2328,11 @@ export default function RegisterSteps() {
           )}
         </div>
       </div>
+      <PaymentMethodModal
+        isOpen={showPaymentMethodModal}
+        onClose={() => setShowPaymentMethodModal(false)}
+        onSelectMethod={handlePaymentMethodSelect}
+      />
     </div>
   );
 }

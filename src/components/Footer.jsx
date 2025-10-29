@@ -160,6 +160,14 @@ export default function Footer() {
           >
             Refund Policy
           </a>
+          |{" "}
+          <a
+            href="/delivery-policy"
+            className="font-light underline"
+            style={{ color: "#662C8F" }}
+          >
+            Delivery Policy
+          </a>
         </div>
       </div>
 
